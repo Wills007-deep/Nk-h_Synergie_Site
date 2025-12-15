@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Nkàh Synergie</title>
+    <meta name="description"
+        content="Planifiez votre événement avec Nkàh Synergie grâce à un assistant interactif pour construire votre devis.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="reservation-page">
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="logo">
+                <img src="asset/image/logo_bleu.png" alt="Nkàh Synergie Logo" class="logo__img">
+            </a>
+
+            <nav class="nav" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html#home" class="nav__link">Accueil</a></li>
+                    <li class="nav__item"><a href="index.html#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="index.html#portfolio" class="nav__link">Réalisations</a></li>
+                    <li class="nav__item"><a href="index.html#about" class="nav__link">À Propos</a></li>
+                    <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+            </nav>
+
+            <div class="header__actions">
+                <a href="reservation.html" class="button button--primary">Réserver</a>
+                <div class="nav__toggle" id="nav-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="reservation section" id="reservation">
+            <div class="container reservation__container">
+                <div class="reservation__intro">
+                    <h1 class="section__title reservation__title">Planifions ensemble votre événement</h1>
+                    <p class="reservation__description">Nkàh Bot va vous poser quelques questions pour comprendre votre
+                        projet et préparer un devis sur-mesure. Cela ne prend que quelques minutes.</p>
+                </div>
+
+                <div class="reservation-assistant">
+                    <div class="assistant__sidebar">
+                        <div class="assistant__bot">
+                            <div class="assistant__bot-face">
+                                <div class="assistant__bot-eyes">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="assistant__bot-mouth"></div>
+                            </div>
+                            <p class="assistant__bot-name">Nkàh Bot</p>
+                            <p class="assistant__bot-role">Assistant devis événementiel</p>
+                        </div>
+                        <ul class="assistant__steps-list">
+                            <li data-step="0" class="active">Nom &amp; WhatsApp</li>
+                            <li data-step="1">Votre événement</li>
+                            <li data-step="2">Date &amp; lieu</li>
+                            <li data-step="3">Invités &amp; budget</li>
+                            <li data-step="4">Services souhaités</li>
+                            <li data-step="5">Attentes &amp; contraintes</li>
+                            <li data-step="6">Récapitulatif</li>
+                        </ul>
+                    </div>
+
+                    <div class="assistant__chat">
+                        <div class="assistant__progress">
+                            <div class="assistant__progress-bar" id="assistantProgress"></div>
+                        </div>
+
+                        <div class="assistant__messages" id="assistantMessages">
+                            <!-- Messages générés en JS -->
+                        </div>
+
+                        <form class="assistant__input-area" id="assistantForm">
+                            <label for="assistantInput" class="sr-only">Réponse</label>
+                            <button type="button" id="assistantPrev"
+                                class="button button--secondary assistant__button assistant__button--prev assistant__button--icon">Précédent</button>
+                            <input type="text" id="assistantInput" class="assistant__input" autocomplete="off"
+                                placeholder="Écrivez votre réponse ici...">
+                            <button type="submit"
+                                class="button button--primary assistant__button assistant__button--next assistant__button--icon">Suivant</button>
+                        </form>
+
+                        <div class="assistant__footer">
+                            <p>Vous préférez un échange direct ?
+                                <a href="mailto:contact@nkahsynergie.com">contact@nkahsynergie.com</a>
+                            </p>
+                            <a id="assistantWhatsappBtn" class="assistant__whatsapp-btn" href="#" target="_blank"
+                                rel="noopener" style="display: none;">
+                                Continuer sur WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__content">
+                <a href="index.html" class="footer__logo">
+                    <img src="asset/image/logo_blanc.png" alt="Nkàh Synergie Logo" class="footer__logo-img">
+                </a>
+                <p class="footer__description">L'excellence événementielle.</p>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Liens Rapides</h3>
+                <ul class="footer__links">
+                    <li><a href="index.html#home" class="footer__link">Accueil</a></li>
+                    <li><a href="index.html#services" class="footer__link">Services</a></li>
+                    <li><a href="index.html#portfolio" class="footer__link">Réalisations</a></li>
+                    <li><a href="index.html#about" class="footer__link">À Propos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Contact</h3>
+                <ul class="footer__links">
+                    <li><span class="footer__info">contact@nkahsynergie.com</span></li>
+                    <li><span class="footer__info">+33 1 23 45 67 89</span></li>
+                    <li><span class="footer__info">Paris, France</span></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__copy">&#169; 2024 Nkàh Synergie. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

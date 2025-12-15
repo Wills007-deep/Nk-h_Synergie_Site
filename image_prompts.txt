@@ -1,0 +1,28 @@
+Voici les prompts détaillés pour générer les images du site :
+
+1. Image Hero (Arrière-plan principal)
+Prompt : Professional conference or corporate event, audience sitting in elegant chairs facing a stage, dark atmospheric lighting with blue tones, modern conference room, people silhouettes from behind, sophisticated business setting, cinematic lighting, high-end event photography style.
+
+2. Portfolio - Gala Soirée
+Prompt : Elegant gala evening event, luxurious banquet hall with round tables, white tablecloths, elegant centerpieces, warm golden lighting, sophisticated dinner setup, high-end corporate gala, professional event photography.
+
+3. Portfolio - Séminaire Tech
+Prompt : Modern tech seminar or conference, large screens displaying presentations, vibrant blue lighting, audience watching presentation, contemporary event space, technology conference atmosphere, professional photography.
+
+4. Portfolio - Atelier des Métiers
+Prompt : Professional workshop or training session, people engaged in hands-on activities, bright modern training room, collaborative learning environment, professional development setting, natural lighting, educational event photography.
+
+5. Portfolio - Événement Artistique
+Prompt : Artistic cultural event, stage with dramatic purple and red lighting, performance or concert atmosphere, elegant audience, sophisticated cultural evening, artistic ambiance, professional event photography.
+
+6. Portfolio - Conférence Annuelle
+Prompt : Corporate annual conference, professional speaker on stage presenting to large audience, modern conference hall, business presentation, executive speaking at podium, professional corporate event photography.
+
+7. Portfolio - Célébration Outdoor
+Prompt : Outdoor celebration event, elegant outdoor venue, people celebrating in open air setting, festive atmosphere, natural daylight, garden or terrace event, sophisticated outdoor party, professional event photography.
+
+8. Témoignage - Jean Dupont
+Prompt : Professional African businessman in elegant dark suit, confident smile, corporate portrait, business executive, professional headshot, modern office background, high-quality professional photography, 40-50 years old.
+
+9. À Propos - Notre Équipe
+Prompt : Professional diverse team photo, group of event planning professionals, mix of men and women in business attire, confident and friendly, modern office or event space background, team collaboration, high-quality corporate photography.
