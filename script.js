@@ -149,11 +149,14 @@ const assistantForm = document.getElementById('assistantForm');
 const assistantInput = document.getElementById('assistantInput');
 const assistantProgress = document.getElementById('assistantProgress');
 const assistantWhatsappBtn = document.getElementById('assistantWhatsappBtn');
+const assistantValidateBtn = document.getElementById('assistantValidateBtn');
+const assistantFooterActions = document.querySelector('.assistant__footer-actions');
 const assistantPrevBtn = document.getElementById('assistantPrev');
 
 const assistantSteps = [
     {
         key: 'contact',
+        emoji: '👋',
         question: "Pour commencer, pouvez-vous indiquer votre nom complet et votre numéro WhatsApp ?",
         placeholder: "Ex : Marie Dupont, +237 6 50 68 00 11",
         validate: (value) => {
@@ -166,6 +169,7 @@ const assistantSteps = [
     },
     {
         key: 'eventType',
+        emoji: '🎉',
         question: "Merci ! Quel type d'événement préparez-vous ? (mariage, gala, séminaire, anniversaire, ...)",
         placeholder: "Ex : Gala d'entreprise",
         validate: (value) => {
@@ -176,6 +180,7 @@ const assistantSteps = [
     },
     {
         key: 'dateLocation',
+        emoji: '📅',
         question: "Avez-vous déjà une date et un lieu en tête ? Précisez la ville et la période souhaitée.",
         placeholder: "Ex : Juin 2025, Douala ou Yaoundé",
         validate: (value) => {
@@ -186,6 +191,7 @@ const assistantSteps = [
     },
     {
         key: 'guestsBudget',
+        emoji: '💰',
         question: "Combien de participants attendez-vous et quelle fourchette de budget visez-vous ?",
         placeholder: "Ex : 150 personnes, budget 8 000 - 10 000 €",
         validate: (value) => {
@@ -196,6 +202,7 @@ const assistantSteps = [
     },
     {
         key: 'services',
+        emoji: '✨',
         question: "Quels services souhaitez-vous que Nkàh Synergie prenne en charge ? (scénographie, animation, logistique, communication, ...)",
         placeholder: "Ex : Scénographie, animation, coordination jour J",
         validate: (value) => {
@@ -206,6 +213,7 @@ const assistantSteps = [
     },
     {
         key: 'constraints',
+        emoji: '📝',
         question: "Y a-t-il des attentes particulières ou contraintes (thème, timing, invités VIP, contraintes techniques, ... ) ?",
         placeholder: "Ex : Soirée thématique cinéma, présence d'intervenants internationaux",
         validate: () => true,
@@ -255,6 +263,10 @@ function highlightAssistantStep(index) {
 function renderCurrentStep() {
     if (!assistantMessages) return;
 
+    // Mise à jour des éléments mobile
+    const mobileStepCounter = document.querySelector('.mobile-step-counter');
+    const mobileEmoji = document.querySelector('.mobile-emoji');
+
     if (!assistantSteps[assistantCurrentStep]) {
         const summaryLines = [
             "Récapitulatif de votre projet :",
@@ -273,27 +285,100 @@ function renderCurrentStep() {
             "Notre équipe vous recontactera pour transformer ce brief en devis personnalisé.",
         ];
         const summaryText = summaryLines.join('\n');
-        assistantMessages.innerHTML = '';
-        createMessage(summaryText, 'bot');
+        // Affichage premium dans le chat
+        if (assistantMessages) {
+            assistantMessages.innerHTML = '';
+            const wrapper = document.createElement('div');
+            wrapper.className = 'assistant__message assistant__message--bot';
+
+            const card = document.createElement('div');
+            card.className = 'assistant__summary-card';
+            card.innerHTML = `
+                <div class="assistant__summary-header">Récapitulatif de votre projet</div>
+                <div class="assistant__summary-section">
+                    <div><span class="assistant__summary-label">Type d'événement :</span> <span class="assistant__summary-value">${assistantAnswers.eventType || '—'}</span></div>
+                    <div><span class="assistant__summary-label">Date / Lieu :</span> <span class="assistant__summary-value">${assistantAnswers.dateLocation || '—'}</span></div>
+                    <div><span class="assistant__summary-label">Invités & budget :</span> <span class="assistant__summary-value">${assistantAnswers.guestsBudget || '—'}</span></div>
+                </div>
+                <div class="assistant__summary-section">
+                    <div class="assistant__summary-section-title">Services & attentes</div>
+                    <div><span class="assistant__summary-label">Services souhaités :</span> <span class="assistant__summary-value">${assistantAnswers.services || '—'}</span></div>
+                    <div><span class="assistant__summary-label">Attentes / contraintes :</span> <span class="assistant__summary-value">${assistantAnswers.constraints || '—'}</span></div>
+                </div>
+                <div class="assistant__summary-section">
+                    <div class="assistant__summary-section-title">Coordonnées</div>
+                    <div><span class="assistant__summary-label">Nom & WhatsApp :</span> <span class="assistant__summary-value">${assistantAnswers.contact || '—'}</span></div>
+                </div>
+                <div class="assistant__summary-footer">Notre équipe vous recontactera pour transformer ce brief en devis personnalisé.</div>
+            `;
+
+            wrapper.appendChild(card);
+            assistantMessages.appendChild(wrapper);
+            assistantMessages.scrollTop = assistantMessages.scrollHeight;
+        }
         updateAssistantProgress();
         // index 6 = rubrique "Récapitulatif" dans la sidebar
         highlightAssistantStep(6);
+
+        if (mobileStepCounter) mobileStepCounter.textContent = "Terminé !";
+        if (mobileEmoji) mobileEmoji.textContent = "✅";
+
+        // Désactiver la saisie et masquer le formulaire (on ne garde qu'un bouton de validation)
         if (assistantInput) {
             assistantInput.disabled = true;
         }
-        const submitButton = document.querySelector('.assistant__button');
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Merci !';
+        if (assistantForm) {
+            assistantForm.style.display = 'none';
         }
 
-        // Préparer le lien WhatsApp avec le récapitulatif
+        // --- Intégration n8n ---
+        // Envoi des données au Webhook n8n
+        const n8nWebhookUrl = 'https://VOTRE_URL_WEBHOOK_N8N_ICI'; // À REMPLACER par votre URL n8n
+
+        // Extraction du numéro de téléphone (tentative simple)
+        const contactValue = assistantAnswers.contact || '';
+        const phoneMatch = contactValue.match(/[\d\+\s]{8,}/);
+        const extractedPhone = phoneMatch ? phoneMatch[0].replace(/\D/g, '') : '';
+
+        const formData = {
+            ...assistantAnswers,
+            summary: summaryText,
+            extractedPhone: extractedPhone,
+            timestamp: new Date().toISOString()
+        };
+
+        fetch(n8nWebhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        }).catch(err => console.error('Erreur envoi n8n:', err));
+
+        // --- Bouton Valider & Bouton WhatsApp ---
+        if (assistantFooterActions) {
+            assistantFooterActions.style.display = 'flex';
+        }
+        if (assistantValidateBtn) {
+            assistantValidateBtn.style.display = 'inline-flex';
+            assistantValidateBtn.disabled = false;
+            assistantValidateBtn.textContent = 'Valider le récapitulatif';
+            assistantValidateBtn.onclick = () => {
+                assistantValidateBtn.disabled = true;
+                assistantValidateBtn.textContent = 'Récapitulatif validé';
+            };
+        }
+
+        // Le bouton WhatsApp ouvre la conversation avec un message d'initiation
         if (assistantWhatsappBtn) {
-            const whatsappNumber = '237650680011'; // numéro de l'agence sans espaces ni +
-            const encodedText = encodeURIComponent(summaryText);
+            const whatsappNumber = '237650680011'; // numéro de l'agence
+            const startMessage = "Bonjour, je viens de valider mon récapitulatif de projet sur le site.";
+            const encodedText = encodeURIComponent(startMessage);
             assistantWhatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+            assistantWhatsappBtn.textContent = 'Continuer sur WhatsApp';
             assistantWhatsappBtn.style.display = 'inline-flex';
         }
+
         if (assistantPrevBtn) {
             assistantPrevBtn.disabled = true;
         }
@@ -303,6 +388,14 @@ function renderCurrentStep() {
     const step = assistantSteps[assistantCurrentStep];
     assistantMessages.innerHTML = '';
     createMessage(step.question, 'bot');
+
+    // Mise à jour Mobile
+    if (mobileStepCounter) {
+        mobileStepCounter.textContent = `Étape ${assistantCurrentStep + 1} sur ${assistantSteps.length}`;
+    }
+    if (mobileEmoji && step.emoji) {
+        mobileEmoji.textContent = step.emoji;
+    }
 
     const existingValue = assistantAnswers[step.key];
     if (assistantInput) {

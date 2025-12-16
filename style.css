@@ -780,6 +780,129 @@ select {
     align-items: stretch;
 }
 
+/* Styles pour le Ticket Résumé Premium (Glassmorphism) */
+.summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+    position: relative;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.summary-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-logo {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    animation: floatBot 3s ease-in-out infinite;
+}
+
+.summary-header h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.summary-header p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.summary-body {
+    padding: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.summary-label {
+    color: #fff;
+    font-weight: 700;
+    /* Questions en gras */
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    margin-right: 1rem;
+    opacity: 1;
+}
+
+.summary-value {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    /* Réponses normal */
+    text-align: right;
+    line-height: 1.4;
+}
+
+.summary-value.small {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
+
+.summary-value.summary-highlight {
+    color: var(--secondary-gold);
+    font-weight: 500;
+}
+
+.summary-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+}
+
+.summary-section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.summary-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.summary-id {
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Ajustement bulle HTML */
+.assistant__bubble--html {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    width: 100%;
+    max-width: 100%;
+}
+
 .assistant__sidebar {
     background: rgba(15, 26, 43, 0.9);
     border-radius: 1.5rem;
@@ -945,6 +1068,54 @@ select {
     white-space: pre-line;
 }
 
+/* Carte de récapitulatif de fin de formulaire */
+.assistant__summary-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+    max-width: 100%;
+    border: 2px solid var(--secondary-gold);
+}
+
+.assistant__summary-header {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    color: #1c2e4a;
+}
+
+.assistant__summary-section {
+    margin-top: 0.75rem;
+}
+
+.assistant__summary-section-title {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: #1c2e4a;
+}
+
+.assistant__summary-label {
+    font-weight: 600;
+    color: #1c2e4a;
+}
+
+.assistant__summary-value {
+    font-weight: 400;
+    color: #333;
+}
+
+.assistant__summary-section div {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.assistant__summary-footer {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
 .assistant__bubble--user {
     background: var(--primary-blue);
     color: #ffffff;
@@ -1010,6 +1181,17 @@ select {
 .assistant__footer a {
     color: var(--primary-blue);
     font-weight: 600;
+}
+
+.assistant__footer-actions {
+    margin-top: 0.75rem;
+    display: none;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.assistant__validate-btn {
+    padding: 0.55rem 1.2rem;
 }
 
 .assistant__whatsapp-btn {
@@ -1239,7 +1421,8 @@ select {
     }
 
     .nav__link {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+        /* Police réduite */
         color: var(--text-main);
         padding: 1.1rem 1.25rem;
         display: flex;
@@ -1306,6 +1489,11 @@ select {
     /* Lien Réserver dans le menu, visible seulement sur mobile */
     .nav__item--reserve {
         display: block;
+        order: 10;
+        /* Place l'élément en dernier */
+        margin-top: auto;
+        /* Pousse l'élément vers le bas */
+        width: 100%;
     }
 
     .nav__item--reserve .nav__link {
@@ -1316,6 +1504,7 @@ select {
         box-shadow: 0 10px 25px rgba(212, 165, 116, 0.35);
         border-radius: 999px;
         padding: 0.9rem 1.5rem;
+        width: 100%;
     }
 
     .nav__item--reserve .nav__link::before {
@@ -1365,157 +1554,286 @@ select {
 
     /* Version mobile plus premium pour la réservation */
     .reservation {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding: 0;
+        background: #0f1a2b;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
     }
 
     .reservation__container {
-        gap: 0.5rem;
-    }
-
-    .reservation-assistant {
-        display: flex;
-        flex-direction: column;
-        height: calc(100vh - 100px);
-        min-height: 480px;
-    }
-
-    .assistant__sidebar {
-        padding: 0.5rem 0.75rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        background: white;
-        border-radius: 0.75rem;
-    }
-
-    .assistant__bot {
-        margin-bottom: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        text-align: left;
+        gap: 0;
         width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
     }
 
-    .assistant__bot-face {
-        width: 32px;
-        height: 32px;
-        margin-bottom: 0;
-        flex-shrink: 0;
-    }
-
-    .assistant__bot-name {
-        font-size: 0.9rem;
-        margin-bottom: 0;
-        color: var(--primary-blue);
-    }
-
-    .assistant__bot-role {
+    .reservation__intro {
         display: none;
     }
 
+    /* On affiche la sidebar mais on la transforme pour ne montrer que le robot */
+    /* On affiche la sidebar mais on la transforme pour ne montrer que le robot */
+    .assistant__sidebar {
+        display: flex;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        padding: 0;
+        margin: 2rem auto 1rem;
+        /* Marges ajustées */
+        justify-content: center;
+        width: 100px;
+        /* Encore plus petit */
+        height: 85px;
+        /* Hauteur réduite */
+        border-radius: 1rem;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        /* Assurance centrage flex */
+    }
+
+    .assistant__message {
+        display: flex;
+        flex-direction: column;
+        max-width: 80%;
+        animation: messageSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        opacity: 0;
+        /* Start invisible */
+    }
+
+    @keyframes messageSlideIn {
+        0% {
+            opacity: 0;
+            transform: translateX(50px) scale(0.9);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    .assistant__bot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: static;
+        justify-content: flex-end;
+        padding-bottom: 0.75rem;
+    }
+
+    .assistant__bot-face {
+        width: 46px;
+        height: 46px;
+        margin-bottom: 0;
+        border-radius: 50%;
+        border: 2px solid var(--secondary-gold);
+        position: absolute;
+        top: -23px;
+        left: 50%;
+        /* Point de départ */
+        transform: translateX(-50%);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        background: #0f1a2b;
+        z-index: 10;
+        animation: patrol 3s ease-in-out infinite alternate;
+        /* Animation aller-retour */
+    }
+
+    @keyframes patrol {
+        0% {
+            left: 20%;
+            /* Coin gauche */
+        }
+
+        100% {
+            left: 80%;
+            /* Coin droit */
+        }
+    }
+
+    /* Nom très compact */
+    .assistant__bot-name {
+        display: block !important;
+        color: #0f1a2b;
+        font-weight: 700;
+        font-size: 0.85rem;
+        /* Police réduite */
+        margin-top: 0;
+        line-height: 1.2;
+        text-align: center;
+        width: 100%;
+    }
+
+    .assistant__bot-role,
     .assistant__steps-list {
         display: none;
     }
 
     .assistant__chat {
-        padding: 0.75rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background: #0f1a2b;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 1.5rem 2rem;
+        /* On retire height: 100vh pour laisser le flux naturel avec le robot au-dessus */
+        height: auto;
         flex: 1;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
-        border-radius: 0.75rem;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* Éléments Mobile Spécifiques */
+    .mobile-step-counter {
+        display: block !important;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .mobile-emoji {
+        display: block !important;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    /* Styles pour le Ticket Résumé Premium (Glassmorphism) */
+    .assistant__summary-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1.25rem;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+        max-width: 100%;
+        border: 2px solid var(--secondary-gold);
+        /* Bordure dorée demandée */
+    }
+
+    .assistant__progress {
+        display: none;
     }
 
     .assistant__messages {
-        flex: 1;
-        overflow-y: auto;
-        padding-bottom: 0.5rem;
-        padding-right: 0.25rem;
+        flex: 0 0 auto;
+        overflow: visible;
+        margin-bottom: 2rem;
+        padding: 0;
     }
 
-    .assistant__message {
-        max-width: 95%;
-        font-size: 0.9rem;
-        padding: 0.75rem 0.85rem;
+    .assistant__message--bot {
+        max-width: 100%;
+        text-align: center;
+        width: 100%;
     }
 
+    .assistant__bubble--bot {
+        background: transparent;
+        color: #ffffff;
+        font-size: 1.75rem;
+        font-weight: 700;
+        padding: 0;
+        line-height: 1.3;
+    }
+
+    .assistant__meta {
+        display: none;
+    }
+
+    .assistant__message--user {
+        display: none;
+    }
+
+    /* Zone de saisie */
     .assistant__input-area {
-        flex-wrap: nowrap;
-        align-items: center;
-        border-radius: 3rem;
-        gap: 0.35rem;
-        padding: 0.25rem;
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
+        background: transparent;
+        border: none;
+        padding: 0;
+        flex-direction: column;
+        gap: 1.5rem;
         margin-top: auto;
+        position: relative;
     }
 
     .assistant__input {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.95rem;
-        background: transparent;
-        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 1.25rem;
+        border-radius: 1rem;
+        font-size: 1.1rem;
+        text-align: center;
+        width: 100%;
     }
 
+    .assistant__input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .assistant__input:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--secondary-gold);
+        box-shadow: 0 0 0 2px rgba(197, 166, 110, 0.2);
+    }
+
+    /* Boutons de navigation */
     .assistant__button {
-        padding: 0;
-        font-size: 0;
-        min-width: 2.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
         justify-content: center;
-        flex-shrink: 0;
+    }
+
+    .assistant__button--next {
+        background-color: var(--secondary-gold);
+        color: var(--primary-blue);
+        order: 2;
     }
 
     .assistant__button--prev {
-        order: 0;
-        background-color: #e9ecef;
-        color: var(--text-main);
-        border: none;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+        order: 1;
     }
 
-    .assistant__button--prev::before,
-    .assistant__button--next::before {
-        font-size: 1.1rem;
-        line-height: 1;
+    .assistant__footer {
+        display: none;
     }
 
-    .assistant__button--prev::before {
-        content: '←';
+    /* Header simplifié sur mobile pour la réservation */
+    .header {
+        background: #0f1a2b;
+        box-shadow: none;
     }
 
-    .assistant__button--next::before {
-        content: '→';
+    .logo__img {
+        content: url('asset/image/logo_blanc.png');
+        /* Force logo blanc */
+    }
+
+    .nav__toggle {
+        color: #fff;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .assistant__input-area {
-        padding: 0.2rem;
-        gap: 0.25rem;
+    .assistant__bubble--bot {
+        font-size: 1.5rem;
     }
 
-    .assistant__input {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.5rem;
-    }
-
-    .assistant__button {
-        width: 2rem;
-        height: 2rem;
-        min-width: 2rem;
-    }
-
-    .assistant__button--prev::before,
-    .assistant__button--next::before {
-        font-size: 0.9rem;
+    .mobile-emoji {
+        font-size: 3.5rem;
     }
 }
