@@ -1814,17 +1814,17 @@ select {
 
     /* Header simplifié sur mobile pour la réservation */
     .header {
-        background: #0f1a2b;
-        box-shadow: none;
+        background: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        /* Légère ombre */
     }
 
     .logo__img {
-        content: url('asset/image/logo_blanc.png');
-        /* Force logo blanc */
+        content: url('asset/image/logo_bleu.png');
     }
 
     .nav__toggle {
-        color: #fff;
+        color: var(--title-color);
     }
 }
 
