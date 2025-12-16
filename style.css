@@ -27,6 +27,12 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media screen and (max-width: 768px) {
+    :root {
+        --header-height: 4rem;
+    }
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -1038,17 +1044,22 @@ select {
 }
 
 @keyframes floatBot {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-6px);
+        transform: translateY(-15px);
     }
 }
 
 @keyframes blink {
-    0%, 92%, 100% {
+
+    0%,
+    92%,
+    100% {
         transform: scaleY(1);
     }
 
@@ -1058,7 +1069,9 @@ select {
 }
 
 @keyframes eyeMove {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0);
     }
 
@@ -1198,7 +1211,7 @@ select {
         max-width: 380px;
         height: 100vh;
         min-height: 100vh;
-        padding: 5rem 2rem 3rem;
+        padding: 4rem 2rem 3rem;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: var(--z-fixed);
@@ -1314,7 +1327,7 @@ select {
     }
 
     .logo__img {
-        height: 60px;
+        height: 55px;
     }
 
     .home__title {
@@ -1352,48 +1365,121 @@ select {
 
     /* Version mobile plus premium pour la réservation */
     .reservation {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 
     .reservation__container {
-        gap: 1.75rem;
+        gap: 0.5rem;
+    }
+
+    .reservation-assistant {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 100px);
+        min-height: 480px;
     }
 
     .assistant__sidebar {
-        padding: 1.6rem 1.4rem;
-        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+        padding: 0.5rem 0.75rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: white;
+        border-radius: 0.75rem;
+    }
+
+    .assistant__bot {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: left;
+        width: 100%;
+    }
+
+    .assistant__bot-face {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .assistant__bot-name {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        color: var(--primary-blue);
+    }
+
+    .assistant__bot-role {
+        display: none;
+    }
+
+    .assistant__steps-list {
+        display: none;
     }
 
     .assistant__chat {
-        padding: 1.4rem 1.4rem 1.1rem;
-        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+        padding: 0.75rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 0.75rem;
+    }
+
+    .assistant__messages {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 0.5rem;
+        padding-right: 0.25rem;
     }
 
     .assistant__message {
-        max-width: 100%;
+        max-width: 95%;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.85rem;
     }
 
     .assistant__input-area {
         flex-wrap: nowrap;
         align-items: center;
-        border-radius: 1rem;
+        border-radius: 3rem;
         gap: 0.35rem;
+        padding: 0.25rem;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        margin-top: auto;
     }
 
     .assistant__input {
-        padding: 0.5rem 0.7rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
+        background: transparent;
+        border: none;
     }
 
     .assistant__button {
-        padding: 0.4rem 0.75rem;
+        padding: 0;
         font-size: 0;
-        min-width: 2.1rem;
-        border-radius: 999px;
+        min-width: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .assistant__button--prev {
         order: 0;
+        background-color: #e9ecef;
+        color: var(--text-main);
+        border: none;
     }
 
     .assistant__button--prev::before,
