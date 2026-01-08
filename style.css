@@ -1837,3 +1837,626 @@ select {
         font-size: 3.5rem;
     }
 }
+
+/* Partners Section */
+.partners {
+    background-color: #f8f9fa;
+    /* Very light gray for subtle separation */
+    padding: 6rem 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.partners__container {
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.partners__track {
+    display: flex;
+    width: calc(250px * 10);
+    /* 250px per item * 10 items */
+    animation: scroll 30s linear infinite;
+}
+
+.partners__track:hover {
+    animation-play-state: paused;
+}
+
+.partner__item {
+    width: 250px;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.partner__logo {
+    max-width: 100%;
+    height: auto;
+    max-height: 50px;
+    /* Smaller, more elegant */
+    filter: grayscale(100%);
+    opacity: 0.4;
+    /* More subtle initial state */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.partner__item:hover .partner__logo {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.2);
+    /* Increased scale as requested */
+}
+
+/* Tooltip Removed as requested */
+.partner__tooltip {
+    display: none;
+}
+
+.partner__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(15, 26, 43, 0.95) transparent transparent transparent;
+}
+
+.partner__item:hover .partner__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+.partner__name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--secondary-gold);
+}
+
+.partner__desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px * 5));
+        /* Move by half the total width (5 items) */
+    }
+}
+
+/* ========================================
+   XYBERCLAN STYLE RESERVATION PAGE
+   ======================================== */
+
+:root {
+    --xyber-bg: #050814;
+    --xyber-card-bg: rgba(28, 46, 74, 0.95);
+    /* Nkàh Blue with opacity */
+    --xyber-accent: #C5A66E;
+    /* Nkàh Gold */
+    --xyber-text: #FFFFFF;
+    --xyber-text-muted: #A0AEC0;
+    --xyber-border: rgba(197, 166, 110, 0.2);
+    --xyber-hover: rgba(197, 166, 110, 0.1);
+}
+
+/* Reset & Base */
+.reservation {
+    background: var(--xyber-bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: var(--xyber-text);
+    padding: 2rem;
+}
+
+.reservation__container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header Section */
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    color: var(--xyber-text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: var(--xyber-accent);
+}
+
+.step-indicator {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--xyber-text);
+}
+
+/* Main Card */
+.booking-card {
+    background: var(--xyber-card-bg);
+    border: 1px solid var(--xyber-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.step-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.step-question {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.step-subtitle {
+    color: var(--xyber-text-muted);
+    font-size: 1rem;
+}
+
+/* Card Content & Options */
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.xyber-option {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xyber-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.xyber-option.selected {
+    background: rgba(197, 166, 110, 0.15);
+    border-color: var(--xyber-accent);
+    box-shadow: 0 0 20px rgba(197, 166, 110, 0.2);
+}
+
+.option-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.option-label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.option-check {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.xyber-option.selected .option-check {
+    background: var(--xyber-accent);
+    border-color: var(--xyber-accent);
+}
+
+.option-check::after {
+    content: '✓';
+    color: #000;
+    font-size: 14px;
+    font-weight: 900;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s;
+}
+
+.xyber-option.selected .option-check::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Inputs */
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.xyber-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    color-scheme: dark;
+}
+
+.xyber-search-btn {
+    width: 58px;
+    /* Matches input height approx */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xyber-search-btn:hover {
+    background: var(--xyber-accent);
+    border-color: var(--xyber-accent);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 166, 110, 0.2);
+}
+
+.xyber-search-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.xyber-input:focus {
+    outline: none;
+    border-color: var(--xyber-accent);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(197, 166, 110, 0.1);
+}
+
+.xyber-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Navigation Buttons */
+.booking-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.nav-btn {
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    border: none;
+}
+
+.nav-btn--prev {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--xyber-text-muted);
+}
+
+.nav-btn--prev:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.nav-btn--next {
+    background: var(--xyber-accent);
+    color: #000;
+}
+
+.nav-btn--next:hover {
+    background: #D4B881;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 166, 110, 0.3);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .reservation {
+        padding: 1rem;
+        align-items: flex-start;
+        /* Ensure top alignment on mobile */
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .booking-section {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .booking-card {
+        padding: 1.5rem;
+        min-height: auto;
+        border-radius: 20px;
+        /* Slightly smaller radius */
+    }
+
+    .step-question {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .step-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .xyber-option {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .option-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .option-label {
+        font-size: 1rem;
+    }
+
+    .booking-navigation {
+        position: sticky;
+        bottom: 0;
+        background: #050814;
+        /* Match page bg */
+        padding: 1rem 0;
+        z-index: 10;
+        margin-top: auto;
+        /* Push to bottom if content is short */
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation {
+        padding: 0.5rem;
+    }
+
+    .booking-header {
+        margin-bottom: 1rem;
+    }
+
+    .booking-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .step-emoji {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .step-question {
+        font-size: 1.35rem;
+    }
+
+    .contact-grid {
+        gap: 1rem;
+    }
+
+    .xyber-input {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .nav-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Summary Redesign */
+.summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.summary-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.summary-section:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(197, 166, 110, 0.3);
+    transform: translateY(-2px);
+}
+
+.summary-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--xyber-accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.9;
+}
+
+.summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.summary-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.summary-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.summary-value {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.summary-value.highlight {
+    color: var(--xyber-accent);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.summary-value.italic {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 480px) {
+    .summary-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sending Status Indicators */
+.sending-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sending-status.success {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border-color: rgba(46, 204, 113, 0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--xyber-accent);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(197, 166, 110, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(197, 166, 110, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(197, 166, 110, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
